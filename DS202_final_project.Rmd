@@ -1,6 +1,6 @@
 ---
 title: "final"
-author: "Feifan Cao"
+author: "Feifan Cao"  "Haoran Wang" "Wenzheng Wang" "Chuxiao Yu"
 date: "11/1/2022"
 output: html_document
 ---
