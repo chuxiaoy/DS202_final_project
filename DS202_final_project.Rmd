@@ -9,22 +9,50 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
+## Data set
+We get our data set from the link "https://www.kaggle.com/datasets/whenamancodes/students-performance-in-exams".
+We also created a github for this project, the downloaded data set and R markdown file can be find under this github link "https://github.com/chuxiaoy/DS202_final_project".
+First of all, we are going to read our data:
 ```{r}
 data <- read.csv("exams.csv")
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
 ```{r}
-plot(pressure)
+variable.names(data)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+This data set consists of the marks secured by the students in various subjects. It includes gender, race, their parent level of education, lunch, test preparation course， math score, reading score and writing score. We would like to anlayze what effects students the most about their scores.
+```{r}
+dim(data)
+str(data)
+```
+
+There is a total of 1000 rows with 8 variables in our data set. There are 5 character variables which are gender, race.ethnicity, parental.level.of.education, lunch, and test.preparation.courcee. There are 3 numerical variables that are math.score, reading.score, writing.score.
+```{r}
+summary(data$math.score)
+summary(data$reading.score)
+summary(data$writing.score)
+```
+
+According to the previous code, we get the summary for all the three numerical values. We can see that the minimum math score is 13, the median of reading score is 70 and the maximim of writing score is 100.
+
+```{r}
+library(tidyverse)
+ggplot(data=data,aes(x=math.score, y=reading.score, color=writing.score))+geom_point()
+```
+
+In this scatter plot, we can see that there is relationship between math score, reading score and writing score. As math score increase, reading score increase. As math score rises, writing score also increase.
+```{r}
+levels(factor(data$gender))
+levels(factor(data$race.ethnicity))
+levels(factor(data$parental.level.of.education))
+levels(factor(data$lunch))
+levels(factor(data$test.preparation.course))
+```
+
+In this code that we analysized all the character variables. We can see that
+Two levels in gender: "female" "male" 
+Five levels in race: "group A" "group B" "group C" "group D" "group E"
+Six levels in education: "associate's degree", "bachelor's degree", "high school", "master's degree", "some college", "some high school"
+Two levels in lunch: "free/reduced" "standard"
+Two levels in preparation course: "completed" "none" 
