@@ -1,6 +1,6 @@
 ---
-title: "final"
-author: "Feifan Cao"  "Haoran Wang" "Wenzheng Wang" "Chuxiao Yu"
+title: "DS202 Final Project Team2"
+author: "Feifan Cao, Haoran Wang, Wenzheng Wang, Chuxiao Yu"
 date: "11/1/2022"
 output: html_document
 ---
