@@ -13,36 +13,48 @@ knitr::opts_chunk$set(echo = TRUE)
 #all the packages we used in this project
 library(ggplot2)
 library(dplyr)
+library(lubridate)
 ```
 
 ## Introduction
 In this project, we are interested in if graduation rate related to different district and different year in Iowa. We got our data from https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This dataset provides the 4-Year graduation rates in Iowa by cohort (represented by graduating class) and public school district starting with the Class of 2009.
 ```{r}
-gr=read.csv("4-Year_Graduation_Rates_in_Iowa_by_Cohort_and_Public_School_District.csv")
+df=read.csv("4-Year_Graduation_Rates_in_Iowa_by_Cohort_and_Public_School_District.csv")
 ```
 
 
 ## Data  
 ```{r}
-dim(gr)
-variable.names(gr)
+dim(df)
+variable.names(df)
+length(unique(df$District)) 
+length(unique(df$District.Name))
+range(df$Graduating.Class)
+
 ```
 
 There are 3566 rows with 8 columns in our data set. Here are the introductions for each variable:
 
-Graduating Class - Year the class is expected to graduate
+Graduating Class - Year the class is expected to graduate. We can see that the graduation year is from 2009 to 2019.
 
 Fall Freshman Year - The year the cohort entered their freshman year of high school
 
-District - ID given by the Department of Education for the school district
+District - ID given by the Department of Education for the school district. There are 348 different district ID in total.
 
-District Name - Name of the school district.
+District Name - Name of the school district. There are  378 different district names in total. There is more District Name(`District.Name`) than the district ID(`District`) we assume there are some district names share the same district ID or maybe the district name have been changed during 2009-2019 but using the same District ID.
 
 Graduates - First time freshman in year indicated in fall freshman year and transfers into the cohort in grades 9 to 12 who graduated in year indicated in graduating class or earlier. 
 
 Total Cohort - First time freshman in year indicated in fall freshman year and transfers into the cohort in grades 9 to 12 less those who transferred out (including deceased). 
 
 Graduation Rate - Graduates divided by Total Cohort multiplied by 100.
+
+## Clean the data set
+```{r}
+gr=na.omit(df)
+dim(gr)
+```
+Since there are a lot of NA values, we decide to delete all the rows with NA. After cleaning, there are 2458 rows left in our data set. The new data set is called gr in R code.
 
 ## Graphs
 We would like to use Graduation Rate as our dependent variable and we would like to analysis different district and freshman year based on the graphs. 
@@ -56,7 +68,12 @@ gr %>%
   ggplot(aes(District, weight=Graduation.Rate)) + geom_bar()
 ```
 
+In the following graph, we would like to see if there is any relationship between the year of graduate (`Graduating.Class`) and graduation rate(`Graduation.Rate`). First of all, we need to  change the gradating.class into character variable to move on. We used group_by function first to divide the data set into according year and use ggplot to draw the relationship between graduation year and graduation rate in a boxplot to analysis. 
 ```{r}
-
+gr$Graduating.Class=as.character(gr$Graduating.Class)
+gr %>% 
+  group_by(Graduating.Class) %>% 
+  ggplot(aes(Graduating.Class,y=Graduation.Rate))+geom_boxplot()
 ```
+
 
