@@ -1,0 +1,62 @@
+---
+title: "Graduation rates report"
+author: "Feifan Cao"
+date: "12/4/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#all the packages we used in this project
+library(ggplot2)
+library(dplyr)
+```
+
+## Introduction
+In this project, we are interested in if graduation rate related to different district and different year in Iowa. We got our data from https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This dataset provides the 4-Year graduation rates in Iowa by cohort (represented by graduating class) and public school district starting with the Class of 2009.
+```{r}
+gr=read.csv("4-Year_Graduation_Rates_in_Iowa_by_Cohort_and_Public_School_District.csv")
+```
+
+
+## Data  
+```{r}
+dim(gr)
+variable.names(gr)
+```
+
+There are 3566 rows with 8 columns in our data set. Here are the introductions for each variable:
+
+Graduating Class - Year the class is expected to graduate
+
+Fall Freshman Year - The year the cohort entered their freshman year of high school
+
+District - ID given by the Department of Education for the school district
+
+District Name - Name of the school district.
+
+Graduates - First time freshman in year indicated in fall freshman year and transfers into the cohort in grades 9 to 12 who graduated in year indicated in graduating class or earlier. 
+
+Total Cohort - First time freshman in year indicated in fall freshman year and transfers into the cohort in grades 9 to 12 less those who transferred out (including deceased). 
+
+Graduation Rate - Graduates divided by Total Cohort multiplied by 100.
+
+## Graphs
+We would like to use Graduation Rate as our dependent variable and we would like to analysis different district and freshman year based on the graphs. 
+
+In the first graph, we are interested in if there is relationship between district and graduation rate. We use group_by function to summarize the the variable `District`, and then we use summarize and mutate function to find the mean graduation rate of year 2009-2019. In the end, we draw a bar plot for of different District and mean Graduation rate.
+```{r}
+gr %>% 
+  group_by(District) %>% 
+  summarize(Graduation.Rate= mean(Graduation.Rate)) %>%
+  mutate(District= reorder(District, -Graduation.Rate, mean)) %>%
+  ggplot(aes(District, weight=Graduation.Rate)) + geom_bar()
+```
+
+```{r}
+
+```
+
