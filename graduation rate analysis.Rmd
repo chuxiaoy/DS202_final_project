@@ -1,6 +1,6 @@
 ---
 title: "Graduation rates report"
-author: "Feifan Cao"
+author: "Feifan Cao, Chuxiao Yu"
 date: "12/4/2022"
 output: html_document
 ---
