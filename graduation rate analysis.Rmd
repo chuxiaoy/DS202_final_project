@@ -52,6 +52,7 @@ Graduation Rate - Graduates divided by Total Cohort multiplied by 100.
 ## Clean the data set
 ```{r}
 gr=na.omit(df)
+head(gr)
 dim(gr)
 ```
 Since there are a lot of NA values, we decide to delete all the rows with NA. After cleaning, there are 2458 rows left in our data set. The new data set is called gr in R code.
@@ -60,6 +61,8 @@ Since there are a lot of NA values, we decide to delete all the rows with NA. Af
 We would like to use Graduation Rate as our dependent variable and we would like to analysis different district and freshman year based on the graphs. 
 
 In the first graph, we are interested in if there is relationship between district and graduation rate. We use group_by function to summarize the the variable `District`, and then we use summarize and mutate function to find the mean graduation rate of year 2009-2019. In the end, we draw a bar plot for of different District and mean Graduation rate.
+
+Based on the output graph, it is too concentrated to tell if there is any relationship between district and graduation rate.
 ```{r}
 gr %>% 
   group_by(District) %>% 
@@ -69,6 +72,7 @@ gr %>%
 ```
 
 In the following graph, we would like to see if there is any relationship between the year of graduate (`Graduating.Class`) and graduation rate(`Graduation.Rate`). First of all, we need to  change the gradating.class into character variable to move on. We used group_by function first to divide the data set into according year and use ggplot to draw the relationship between graduation year and graduation rate in a boxplot to analysis. 
+Based on the output box plot, we can see that graduation class do have a little effect on the graduation but not significant. We can see that the median graduation and 25% quantile is not affecting by graduation year but the 75% quantile has a increasing trend from graduation class 2011-2016. We can also see that there is always a few outliers each year with low graduating rate.
 ```{r}
 gr$Graduating.Class=as.character(gr$Graduating.Class)
 gr %>% 
@@ -77,3 +81,10 @@ gr %>%
 ```
 
 
+## Related Data Set 1
+
+
+
+
+## Related Data Set 2
+In the first related data set (graduate intention), we are going to learn about where did the students go after they graduate from high school. We got our data set from https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts. Since there is no data for year 2009, 2010, 2011, and 2019, we are going to only focus on year 2012-208
