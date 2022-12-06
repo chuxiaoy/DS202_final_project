@@ -87,4 +87,56 @@ gr %>%
 
 
 ## Related Data Set 2
-In the first related data set (graduate intention), we are going to learn about where did the students go after they graduate from high school. We got our data set from https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts. Since there is no data for year 2009, 2010, 2011, and 2019, we are going to only focus on year 2012-208
+
+### Intro and data cleaning
+After all the researches before, we would like to learn further, thus in this second related data set (graduate intention), we are going to learn about where did the students go after they graduate from high school. We got our data set from https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts. Since there is no data for year 2009, 2010, 2011, and 2019, we are going to only focus on year 2012-2018. There were multiple excel forms and we have already combined them together and added a new column called `Graduation.Year`, in which year that the students graduates.
+
+In the first part of the code, we are introducing the data, change all the N/A and empty cell into NA, and delete all the NA values for further research. We also change the data type to what they are supposed to be. The final data set is saved as gi.After cleaning the data, we can see that there are 1859 rows with 15 columns.
+```{r}
+df3 <- read.csv("graduate_intention.csv")
+#change all the N/A and empty cell into NA and delete them
+df3[df3 == ""] <- NA
+df3[df3 == "N/A"] <- NA
+gi=na.omit(df3)
+variable.names(gi)
+str(gi)
+gi$Diploma.Count=as.numeric(gi$Diploma.Count)
+gi$Private.4.Year.College=as.numeric(gi$Private.4.Year.College)
+gi$Public.4.Year.College=as.numeric(gi$Public.4.Year.College)
+gi$Private.2.Year.College=as.numeric(gi$Private.2.Year.College)
+gi$Community.College=as.numeric(gi$Community.College)
+gi$Other.Training=as.numeric(gi$Other.Training)
+gi$Employment=as.numeric(gi$Employment)
+gi$Homemaker=as.numeric(gi$Homemaker)
+gi$Military=as.numeric(gi$Military)
+gi$Unknown=as.numeric(gi$Unknown)
+gi$Graduation.Year=as.character(gi$Graduation.Year)
+str(gi)
+gi=na.omit(gi)
+dim(gi)
+```
+
+### basic analysis
+Next, we would like to some basic analysis for this data. 
+
+According to the output, we can see that most students will go to college(private 4 year college, public 4 year college, private 2 year college and community college) after they graduate. Employement is another popular choice for students who graduate from high school.
+```{r}
+gi%>%group_by(Graduation.Year)%>%
+  summarize(
+    sum.Diploma.Count=sum(Diploma.Count),
+    sum.Private.4.Year.College=sum(Private.4.Year.College),
+    sum.Public.4.Year.College=sum(Public.4.Year.College),
+    sum.Private.2.Year.College=sum(Private.2.Year.College),
+    sum.Community.College=sum(Community.College),
+    sum.Other.Training=sum(Other.Training),
+    sum.Employment=sum(Employment),
+    sum.Homemaker=sum(Homemaker),
+    sum.Military=sum(Military),
+    sum.Unknown=sum(Unknown)
+  )
+```
+
+```{r}
+ggplot(gi,aes(x=Graduation.Year, y=Diploma.Count))+geom_point()
+```
+
