@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(dplyr)
 library(lubridate)
+library(patchwork) 
+library(hrbrthemes)
 ```
 
 ## Introduction
@@ -80,6 +82,25 @@ gr %>%
   ggplot(aes(Graduating.Class,y=Graduation.Rate))+geom_boxplot()
 ```
 
+## Ames
+We are interested in the graduation rate and total cohort in Ames and we created the following graphs. And we can see that 2018 has the highest graduation rate and 2010 has the lowest graduation rate. We can also conclude that for Ames, there is no interaction between Graduating class, total cohort or graduation rate.
+```{r}
+ames=gr%>%filter(District.Name=="Ames")%>%
+  group_by(Graduating.Class)
+
+ames%>%ggplot(aes(x=Graduating.Class, y=Total.Cohort, fill=Graduation.Rate))+geom_bar(stat="identity")
+
+ggplot(ames, aes(x=Graduating.Class)) +
+ geom_bar( aes(y=Total.Cohort), stat="identity", size=.1, fill="plum", alpha=.4)+ 
+  geom_point(aes(y=(Graduation.Rate-91)*50), size=2) +
+  scale_y_continuous(
+    name = "Total.Cohort",
+    sec.axis = sec_axis( trans=~./50+91, name="Graduation.Rate")
+  ) +theme_ipsum()
+
+
+
+```
 
 ## Related Data Set 1
 
@@ -135,8 +156,8 @@ gi%>%group_by(Graduation.Year)%>%
     sum.Unknown=sum(Unknown)
   )
 ```
-
+According to the graph graduation.year versus diploma count below, we can see that graduation is not a factor that affects diploma count.
 ```{r}
-ggplot(gi,aes(x=Graduation.Year, y=Diploma.Count))+geom_point()
+ggplot(gi,aes(x=Graduation.Year, y=Diploma.Count))+geom_boxplot()
 ```
 
