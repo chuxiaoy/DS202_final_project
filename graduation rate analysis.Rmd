@@ -102,15 +102,10 @@ ggplot(ames, aes(x=Graduating.Class)) +
 
 ```
 
-## Related Data Set 1
-
-
-
-
 ## Related Data Set 2
 
 ### Intro and data cleaning
-After all the researches before, we would like to learn further, thus in this second related data set (graduate intention), we are going to learn about where did the students go after they graduate from high school. We got our data set from https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts. Since there is no data for year 2009, 2010, 2011, and 2019, we are going to only focus on year 2012-2018. There were multiple excel forms and we have already combined them together and added a new column called `Graduation.Year`, in which year that the students graduates.
+After all the researches before, we would like to learn further, thus in this related data set (graduate intention), we are going to learn about where did the students go after they graduate from high school. We got our data set from https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts. Since there is no data for year 2009, 2010, 2011, and 2019, we are going to only focus on year 2012-2018. There were multiple excel forms and we have already combined them together and added a new column called `Graduation.Year`, in which year that the students graduates.
 
 In the first part of the code, we are introducing the data, change all the N/A and empty cell into NA, and delete all the NA values for further research. We also change the data type to what they are supposed to be. The final data set is saved as gi.After cleaning the data, we can see that there are 1859 rows with 15 columns.
 ```{r}
