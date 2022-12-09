@@ -161,3 +161,16 @@ According to the graph graduation.year versus diploma count below, we can see th
 ggplot(gi,aes(x=Graduation.Year, y=Diploma.Count))+geom_boxplot()
 ```
 
+```{r}
+ames2=gi%>%filter(District.Name=="Ames")%>%group_by(Graduation.Year)
+#2012
+slices12=c(64, 150, 63, 3, 1, 12, 1, 2, 18)
+lbls12=c("Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.College", "Community.College", "Other.Training","Employment", "Homemaker",  "Military", "Unknown" )
+pie(slices12, labels = lbls12, main="Pie Chart of Countries")
+
+#2013
+slices13=c(49, 154, 76, 2, 7, 16, 1, 4, 0)
+lbls13=c("Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.College", "Community.College", "Other.Training","Employment", "Homemaker",  "Military", "Unknown" )
+pie(slices13, labels = lbls13, main="Pie Chart of Countries")
+```
+
