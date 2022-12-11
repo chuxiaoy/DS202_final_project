@@ -1,0 +1,206 @@
+---
+title: "DropoutRate"
+author: "Chuxiao Yu"
+date: "2022-12-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r cars}
+library(tidyverse)
+library(readxl)
+d2020<-read_excel("DR712_2021_District.xlsx",skip=3)
+d2019<-read_excel("dr712bydistrict2020.xlsx",skip=3)
+d2018<-read_excel("dr712bydistrict2019.xlsx",skip=3)
+d2017<-read_excel("Dropout Rates by district.xlsx",skip=3)
+d2016<-read_excel("2016-2017 Grade 7-12 Dropout Rates by District and Subgroup updated 4-12-18.xlsx",skip=7)
+
+
+```
+Data cleaning
+```{r}
+# remove useless columns
+d2016[45:45] <- list(NULL)
+d2016[9:38] <- list(NULL)
+d2017[9:50] <- list(NULL)
+d2018[9:38] <- list(NULL)
+d2019[9:38] <- list(NULL)
+d2020[9:38] <- list(NULL)
+```
+
+```{r}
+d2016[1:3] <- list(NULL)
+d2017[1:3] <- list(NULL)
+d2018[1:3] <- list(NULL)
+d2019[1:3] <- list(NULL)
+d2020[1:3] <- list(NULL)
+
+d2016 <- d2016[-(334:335),]
+d2017 <- d2017[-319,]
+d2018 <- d2018[-316,]
+d2019 <- d2019[-(315:316),]
+d2020 <- d2020[-(314:315),]
+```
+
+```{r}
+# change column name
+colnames(d2016)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+colnames(d2017)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+colnames(d2018)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+colnames(d2019)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+colnames(d2020)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+```
+
+```{r}
+# add year to each dataset
+d2016 <- d2016 %>% mutate(year=2016)
+d2017 <- d2017 %>% mutate(year=2017)
+d2018 <- d2018 %>% mutate(year=2018)
+d2019 <- d2019 %>% mutate(year=2019)
+d2020 <- d2020 %>% mutate(year=2020)
+
+# drop last/last two rows
+```
+
+```{r}
+head(d2016)
+head(d2017)
+head(d2018)
+head(d2019)
+head(d2020)
+dim(d2016)
+dim(d2017)
+dim(d2018)
+dim(d2019)
+dim(d2020)
+```
+
+```{r}
+# combine all datasets into one
+df <- rbind(d2016,d2017)
+df <- rbind(df,d2018)
+df <- rbind(df,d2019)
+df <- rbind(df,d2020)
+dim(df)
+```
+```{r}
+# drop rows with **** in overall rate
+df <-df[!(df$overall_rate=="****"),]
+dim(df)
+head(df)
+```
+```{r}
+df <- transform(df, district= as.numeric(district),
+                overall_dropout=as.numeric(overall_dropout),
+                overall_enrollments= as.numeric(overall_enrollments),
+                overall_rate= as.numeric(overall_rate),
+                f_dropout= as.numeric(f_dropout),
+                f_enrollments= as.numeric(f_enrollments),
+                f_rate= as.numeric(f_rate),
+                m_dropout= as.numeric(m_dropout),
+                m_enrollments= as.numeric(m_enrollments),
+                m_rate= as.numeric(m_rate))
+df <- df %>% replace(is.na(.), 0)
+str(df)
+```
+
+```{r}
+backup <- df
+```
+
+```{r}
+# create df with split gender
+female <- df %>% select(district, f_dropout,f_enrollments,f_rate, year)
+female <- female %>% mutate(gender="female")
+colnames(female)<-c("district", "dropout" , "enrollments" , "rate" , "year", "gender")
+male <- df %>% select(district, m_dropout,m_enrollments,m_rate, year)
+male <- male %>% mutate(gender="male")
+colnames(male)<-c("district", "dropout" , "enrollments" , "rate" , "year", "gender")
+df_gender <- rbind(female, male)
+head(df_gender)
+```
+
+Data exploration
+```{r}
+library(ggplot2)
+# 1. overall dropout by year
+df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=dropout, fill=gender)) + geom_bar(stat = "identity")
+
+```
+
+```{r}
+# 2. overall dropout percentage changed by year 
+
+df2 <- (df %>% group_by(year) %>%
+          mutate(dropout=sum(overall_dropout),
+                 enrollment=sum(overall_enrollments), 
+                 year = year)) %>% 
+  select(year, dropout, enrollment)
+
+df2 <- df2[!duplicated(df2), ] %>% mutate(rate_percentage = (dropout/enrollment))
+df2 %>% ggplot(aes(x=year,y=rate_percentage))+geom_point()+geom_line()+ylim(0.01, 0.021)
+head(df2)
+```
+
+```{r}
+# 3. dropout rate changed from last year
+options(digits = 5) 
+df3 <- data.frame()
+for (i in 2:5){
+  df3 <-rbind(df3, c(df2$year[i], as.numeric(sprintf((df2$rate_percentage[i] - df2$rate_percentage[i-1]) , fmt = '%#.5f'))))
+}
+colnames(df3)<-c("year", "rate_change")
+df3 %>% ggplot(aes(x=year, y=rate_change)) + geom_bar(stat = "identity") + geom_text(aes(label=rate_change))
+```
+
+```{r}
+# 4.  overall dropout rate by district shape
+df_gender %>% group_by(district) %>% 
+  ggplot(aes(x=reorder(district, rate) , 
+             y=rate/5/nrow(df), fill=gender)) + 
+  geom_bar(stat = "identity")
+```
+
+```{r}
+# 5. overall dropout number by district shape
+df_gender %>% group_by(district) %>% 
+  ggplot(aes(x=reorder(district, dropout) , 
+             y=dropout, fill=gender)) + 
+  geom_bar(stat = "identity")
+```
+
+```{r}
+# 6. number of district of different number of overall dropout students
+count_values <- function(df, lower, upper, year) {
+  sum(df$overall_dropout >= lower & df$overall_dropout <= upper & df$year == year)
+}
+
+df6 <- data.frame()
+for (i in 2016:2020){
+  df6 <- rbind(df6, c(i, count_values(df,0,10, i)))
+  df6 <- rbind(df6, c(i,count_values(df,10,20, i)))
+  df6 <- rbind(df6, c(i,count_values(df,20,50, i)))
+  df6 <- rbind(df6, c(i,count_values(df,50,100, i)))
+  df6 <- rbind(df6, c(i,count_values(df,100,200, i)))
+  df6 <- rbind(df6, c(i,count_values(df,200,500, i)))
+  df6 <- rbind(df6, c(i,count_values(df,500,10000, i)))
+}
+colnames(df6) <- c("year", "count")
+c("year", "0~10","10~20","20~50","50~100","100~200","200~500","500+")
+
+
+
+pie((df6%>%filter(year==2016))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2016)")
+pie((df6%>%filter(year==2017))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2017)")
+pie((df6%>%filter(year==2018))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2018)")
+pie((df6%>%filter(year==2019))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2019)")
+pie((df6%>%filter(year==2020))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2020)")
+```
+
+
+```{r pressure, echo=FALSE}
+```
+
