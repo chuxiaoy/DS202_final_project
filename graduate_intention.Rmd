@@ -28,4 +28,6 @@ dim(gi)
 variable.names(gi)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+There are 2034 rows and 15 columns in our data set. The columns are "County", "AEA", "District", "District.Name", "Graduation.Year", "Diploma.Count", Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.College", "Community.College", "Other.Training", "Employment", "Homemaker", "Military" and "Unknown".
+
+
