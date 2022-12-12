@@ -135,7 +135,7 @@ dim(gi)
 ### basic analysis
 Next, we would like to some basic analysis for this data. 
 
-According to the output, we can see that most students will go to college(private 4 year college, public 4 year college, private 2 year college and community college) after they graduate. Employement is another popular choice for students who graduate from high school.
+According to the output, we can see that most students will go to college(private 4 year college, public 4 year college, private 2 year college and community college) after they graduate. Employment is another popular choice for students who graduate from high school.
 ```{r}
 gi%>%group_by(Graduation.Year)%>%
   summarize(
