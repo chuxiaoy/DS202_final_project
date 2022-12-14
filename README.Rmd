@@ -260,6 +260,17 @@ For Ames graduation rate: both total cohort and graduation class are not factors
 
 
 ## Results 2
+```{r}
+# 1. overall dropout by year
+df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=dropout, fill=gender)) + geom_bar(stat = "identity")
+
+# 2. overal enrollments by year
+df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=enrollments, fill=gender)) + geom_bar(stat = "identity")
+```
+These two bar plot shows overall number of enrollments and dropout by year. 
+We notice that the overall enrollments is increating by year, but overall dropout is decreasing from 2016 to 2019, and it suddenly increase a lot in 2020. This is pretty strange, there should be some big event happened there. We guess that it is because the appearance of covid-19. 
+On the other hand, the ratio of female and male enrollments are close to 50 50, however, as for dropouts, male obviously account for a greater proportion. It means that male has higher dropout rate than female in IOWA
+
 
 ## Results 3-results after analyzing graduation intention
 
