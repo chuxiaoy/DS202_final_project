@@ -61,17 +61,16 @@ The structure sketched out below is an idea of what your repository might look l
 
 
 
-# Title of your project {.unnumbered}
+# Iowa High School Graduation Rate {.unnumbered}
 
 Authors: Chuxiao Yu, Feifan Cao, Haoran Wang, Wenzheng Wang
 
 ## Abstract (TL;DR) {.unnumbered}
 
-An abstract is a quick summary of your work. Ideally it should motivate someone to read the rest of the paper. Include one sentence each on
+In this project, we are interested in if graduation rates related to different graduation years, different district, and different genders, and what are graduates intention. The graduation rate gives students insight into how many students are finishing their degrees in a timely manner once they enroll. It not only is a transparent metric that holds a school accountable, but it also can help a student measure the quality of the school. 
 
--   what is the project about?
--   what is the motivation for doing it?
--   what data is your work based on? and where does it come from? = what are your main findings? (one sentence each)
+We have three different data sets. The first one is about graduation rate. It is from data.iowa.gov. We are trying to find relationship between graduation rate and district, graduation year. The second data is about dropout rate. It is from educateiowa.gov. We are trying to find the dropout rate trend. The third data is about graduation intention. It is from educateiowa.gov. We are trying to find the graduates intention proportion.
+
 
 # Intro/Background/Motivation
 
