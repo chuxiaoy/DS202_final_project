@@ -121,6 +121,19 @@ gi$Graduation.Year=as.character(gi$Graduation.Year)
 str(gi)
 gi=na.omit(gi)
 dim(gi)
+write.csv(gr, "data\\graduation_rate.csv", row.names=FALSE)
+write.csv(gi, "data\\graudation_intension.csv", row.names=FALSE)
+```
+Graduation rate data summary:
+```{r}
+str(gr)
+dim(gr)
+```
+
+Graduation intention data summary:
+```{r}
+str(gi)
+dim(gi)
 ```
 
 ```{r, include=FALSE}
@@ -212,8 +225,13 @@ df2 <- (df %>% group_by(year) %>%
   select(year, dropout, enrollment)
 
 df2 <- df2[!duplicated(df2), ] %>% mutate(rate_percentage = (dropout/enrollment))
+write.csv(df, "data\\dropout.csv", row.names=FALSE)
 ```
-
+Dropout data summary:
+```{r}
+str(df)
+dim(df)
+```
 # Results
 
 Each line of exploration is supposed to be featured in one of the Results sections. Make sure to change to more interesting section headers!
@@ -269,6 +287,7 @@ df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=dropout, fill=gender)) + g
 # 2. overal enrollments by year
 df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=enrollments, fill=gender)) + geom_bar(stat = "identity")
 ```
+
 These two bar plot shows overall number of enrollments and dropout by year. 
 We notice that the overall enrollments is increating by year, but overall dropout is decreasing from 2016 to 2019, and it suddenly increase a lot in 2020. This is pretty strange, there should be some big event happened there. We guess that it is because the appearance of covid-19. 
 On the other hand, the ratio of female and male enrollments are close to 50 50, however, as for dropouts, male obviously account for a greater proportion. It means that male has higher dropout rate than female in IOWA.
@@ -276,6 +295,7 @@ On the other hand, the ratio of female and male enrollments are close to 50 50, 
 ```{r}
 df2 %>% ggplot(aes(x=year,y=rate_percentage))+geom_point()+geom_line()+ylim(0.01, 0.021)
 ```
+
 The next plot shows total dropout rate by year, which is a changing form of the previous plot. It display a more obvious trend. 
 ```{r, include=FALSE}
 options(digits = 5) 
@@ -289,6 +309,7 @@ colnames(df3)<-c("year", "rate_change")
 # 3. dropout rate changed by year
 df3 %>% ggplot(aes(x=year, y=rate_change)) + geom_bar(stat = "identity") + geom_text(aes(label=rate_change))
 ```
+
 In order to view the rate of change by year, we made this plot.This is the accurate change of overall dropout rate by year. Same as what we see in the previous plot, the rate change are negative  from 2016 to 2019, and a big increasing appear in 2020.
 
 ```{r}
@@ -298,6 +319,7 @@ df_gender %>% group_by(district) %>%
              y=rate/nrow(df), fill=gender)) + 
   geom_bar(stat = "identity")
 ```
+
 This plot shows ranked mean dropout rate by district colored by gender. The mean rate is calculated by accumulated overall rate divided by number of districts which is the numer of rows. we can see the distribution of dropout rate by district. 
 ```{r}
 # 5. overall dropout number by district shape
@@ -306,6 +328,7 @@ df_gender %>% group_by(district) %>%
              y=dropout, fill=gender)) + 
   geom_bar(stat = "identity")
 ```
+
 Comparing with next plot which shows dropout count by district, we can see that the distribution is pretty different.The gap between districts is larger. Most of the districts have very low dropouts, there are only a new extreme large value. One district even has about 3000 overall dropout. It is very abnormal to have such an outlier, but it is hard to find out what caused the out lier based on the current data.
 
 ## Results 3-contribution to overall dropout based on number of dropout region
@@ -335,6 +358,7 @@ pie((df6%>%filter(year==2018))$count, labels = c("0~10", "10~20", "20~50", "50~1
 pie((df6%>%filter(year==2019))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2019)")
 pie((df6%>%filter(year==2020))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2020)")
 ```
+
 Next, we divided number of dropouts into different regions  as listed below, and made pie plot by year. We can see that district with less than 10 dropouts each year actually takes more than 75 percent of the total dropout. But in 2020, the percentage suddenly decreased. and number of dropout between 10 and 20 obviously increased, and number of dropout larger than 20 also increased a little bit. this means instead of only several districts, the increase in number of dopout in 2020 is is a large-scale phenomenon.
 
 
