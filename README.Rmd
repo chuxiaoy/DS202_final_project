@@ -290,6 +290,23 @@ colnames(df3)<-c("year", "rate_change")
 df3 %>% ggplot(aes(x=year, y=rate_change)) + geom_bar(stat = "identity") + geom_text(aes(label=rate_change))
 ```
 In order to view the rate of change by year, we made this plot.This is the accurate change of overall dropout rate by year. Same as what we see in the previous plot, the rate change are negative  from 2016 to 2019, and a big increasing appear in 2020.
+
+```{r}
+# 4.  overall dropout rate by district shape
+df_gender %>% group_by(district) %>% 
+  ggplot(aes(x=reorder(district, rate) , 
+             y=rate/nrow(df), fill=gender)) + 
+  geom_bar(stat = "identity")
+```
+This plot shows ranked mean dropout rate by district colored by gender. The mean rate is calculated by accumulated overall rate divided by number of districts which is the numer of rows. we can see the distribution of dropout rate by district. 
+```{r}
+# 5. overall dropout number by district shape
+df_gender %>% group_by(district) %>% 
+  ggplot(aes(x=reorder(district, dropout) , 
+             y=dropout, fill=gender)) + 
+  geom_bar(stat = "identity")
+```
+Comparing with next plot which shows dropout count by district, we can see that the distribution is pretty different.The gap between districts is larger. Most of the districts have very low dropouts, there are only a new extreme large value. One district even has about 3000 overall dropout. It is very abnormal to have such an outlier, but it is hard to find out what caused the out lier based on the current data.
 ## Results 3-results after analyzing graduation intention
 
 ```{r}
