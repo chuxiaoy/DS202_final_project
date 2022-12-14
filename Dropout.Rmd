@@ -137,8 +137,6 @@ df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=dropout, fill=gender)) + g
 
 ```
 ```{r}
-library(ggplot2)
-# 1. overall enrollments by year
 df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=enrollments, fill=gender)) + geom_bar(stat = "identity")
 
 ```

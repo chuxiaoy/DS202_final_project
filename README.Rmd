@@ -193,6 +193,23 @@ df <- transform(df, district= as.numeric(district),
 # 8. replace NA with 0
 df <- df %>% replace(is.na(.), 0)
 
+# 9. create df with split gender
+female <- df %>% select(district, f_dropout,f_enrollments,f_rate, year)
+female <- female %>% mutate(gender="female")
+colnames(female)<-c("district", "dropout" , "enrollments" , "rate" , "year", "gender")
+male <- df %>% select(district, m_dropout,m_enrollments,m_rate, year)
+male <- male %>% mutate(gender="male")
+colnames(male)<-c("district", "dropout" , "enrollments" , "rate" , "year", "gender")
+df_gender <- rbind(female, male)
+
+# 10. create dataframe with accumulated overall value
+df2 <- (df %>% group_by(year) %>%
+          mutate(dropout=sum(overall_dropout),
+                 enrollment=sum(overall_enrollments), 
+                 year = year)) %>% 
+  select(year, dropout, enrollment)
+
+df2 <- df2[!duplicated(df2), ] %>% mutate(rate_percentage = (dropout/enrollment))
 ```
 
 # Results
