@@ -317,6 +317,11 @@ Pie charts: most graduates would like to go to college.4 year public college is 
 
 Give a quick summary of your work. Here is the place to be a bit critical and discuss potential limitations. Add a sentence on what else you would have liked to include in your data exploration if you had more time or more members in your team. 
 
+From our analysis, we find that graduation class do have a little effect on the graduation but not significant. 
+For Ames, both total cohort and graduation class are not factors that affects graduation rate. 
+The overall dropout are decreasing from 2016 to 2019, but suddenly increased in 2020, while the overall enrollments is increasing. We also notice that The district with number of dropouts below than 10 each year contributes more than 75% of total dropouts.However, we find some connection with the districts and dropouts but not able to seek a very sighnificant finding on this part.
+
+
 If we had more time and more data we could make analysis of the dropout rate with covid data
 
 
