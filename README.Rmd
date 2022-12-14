@@ -269,9 +269,25 @@ df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=enrollments, fill=gender))
 ```
 These two bar plot shows overall number of enrollments and dropout by year. 
 We notice that the overall enrollments is increating by year, but overall dropout is decreasing from 2016 to 2019, and it suddenly increase a lot in 2020. This is pretty strange, there should be some big event happened there. We guess that it is because the appearance of covid-19. 
-On the other hand, the ratio of female and male enrollments are close to 50 50, however, as for dropouts, male obviously account for a greater proportion. It means that male has higher dropout rate than female in IOWA
+On the other hand, the ratio of female and male enrollments are close to 50 50, however, as for dropouts, male obviously account for a greater proportion. It means that male has higher dropout rate than female in IOWA.
 
-
+```{r}
+df2 %>% ggplot(aes(x=year,y=rate_percentage))+geom_point()+geom_line()+ylim(0.01, 0.021)
+```
+The next plot shows total dropout rate by year, which is a changing form of the previous plot. It display a more obvious trend. 
+```{r, include=FALSE}
+options(digits = 5) 
+df3 <- data.frame()
+for (i in 2:5){
+  df3 <-rbind(df3, c(df2$year[i], as.numeric(sprintf((df2$rate_percentage[i] - df2$rate_percentage[i-1]) , fmt = '%#.5f'))))
+}
+colnames(df3)<-c("year", "rate_change")
+```
+```{r}
+# 3. dropout rate changed by year
+df3 %>% ggplot(aes(x=year, y=rate_change)) + geom_bar(stat = "identity") + geom_text(aes(label=rate_change))
+```
+In order to view the rate of change by year, we made this plot.This is the accurate change of overall dropout rate by year. Same as what we see in the previous plot, the rate change are negative  from 2016 to 2019, and a big increasing appear in 2020.
 ## Results 3-results after analyzing graduation intention
 
 ```{r}
