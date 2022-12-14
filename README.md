@@ -53,23 +53,6 @@ proportion.
 
 # Intro/Background/Motivation
 
-What is the topic of your project, why is it relevant?
-
-At the end of the Intro, write a sentence describing what each of the
-(result) sections is about, e.g. in section \[Results 1\] we show the
-relationship between XXX and YYY, section [Results 2](#results-2) also
-considers the effect of variable ZZZ. … Finally we conclude with a quick
-summary of our findings and potential follow-up work in section
-[Conclusions](#conclusions).
-
-Somewhere at the beginning of your project, include a code chunk that
-includes all of the R packages you are using throughout. In this
-document, the setup code chunk is called `setup` (see line 8) Also make
-sure to set defaults for the code chunks - like should they be visible?
-(probably not: echo=FALSE). Do you want to automatically include
-warnings? (probably yes, for creating the Rmd, to make sure that all
-warnings are accounted for)
-
 Our project is about researching the graduation rates related to
 different graduation years, different district, and different genders.
 The graduation rate not only gives people insight into how many students
@@ -88,15 +71,68 @@ proportion of graduates intention.
 
 # Quick Data Summary
 
-# Results
+Graduation rate data summary:
 
-Each line of exploration is supposed to be featured in one of the
-Results sections. Make sure to change to more interesting section
-headers!
+    ## 'data.frame':    3458 obs. of  8 variables:
+    ##  $ Graduating.Class        : int  2014 2010 2013 2017 2014 2009 2009 2017 2017 2017 ...
+    ##  $ Fall.Freshman.Year      : int  2010 2006 2009 2013 2010 2005 2005 2013 2013 2013 ...
+    ##  $ District                : int  5160 5160 171 2727 1503 4725 5256 4041 3150 2403 ...
+    ##  $ District.Name           : chr  "PCM" "PCM" "Alta" "Grundy Center" ...
+    ##  $ Graduates               : int  65 74 51 53 101 220 53 123 94 81 ...
+    ##  $ Total.Cohort            : int  70 86 51 53 111 254 55 133 100 84 ...
+    ##  $ Graduation.Rate         : num  92.9 86.1 100 100 91 86.6 96.4 92.5 94 96.4 ...
+    ##  $ Graduation.Rate.Category: chr  "90.1 - 100%" "80.1 - 90%" "90.1 - 100%" "90.1 - 100%" ...
+    ##  - attr(*, "na.action")= 'omit' Named int [1:108] 1 2 3 4 6 11 95 105 118 188 ...
+    ##   ..- attr(*, "names")= chr [1:108] "1" "2" "3" "4" ...
+
+    ## [1] 3458    8
+
+Graduation intention data summary:
+
+    ## 'data.frame':    1859 obs. of  15 variables:
+    ##  $ County                : chr  "42" "39" "25" "75" ...
+    ##  $ AEA                   : int  7 11 11 12 15 10 5 1 7 5 ...
+    ##  $ District              : chr  "9" "18" "27" "63" ...
+    ##  $ District.Name         : chr  "AGWSR" "Adair-Casey" "Adel DeSoto Minburn" "Akron Westfield" ...
+    ##  $ Graduation.Year       : chr  "2012" "2012" "2012" "2012" ...
+    ##  $ Diploma.Count         : num  51 34 94 42 74 52 97 100 43 56 ...
+    ##  $ Private.4.Year.College: num  8 2 6 6 3 5 11 19 12 11 ...
+    ##  $ Public.4.Year.College : num  12 7 44 18 23 18 29 17 8 11 ...
+    ##  $ Private.2.Year.College: num  24 15 25 10 41 27 46 42 16 23 ...
+    ##  $ Community.College     : num  0 0 3 0 0 0 0 0 0 0 ...
+    ##  $ Other.Training        : num  0 4 4 1 0 0 3 3 2 0 ...
+    ##  $ Employment            : num  4 5 7 6 6 2 5 16 5 4 ...
+    ##  $ Homemaker             : num  0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ Military              : num  1 1 5 1 1 0 2 2 0 7 ...
+    ##  $ Unknown               : num  2 0 0 0 0 0 1 1 0 0 ...
+    ##  - attr(*, "na.action")= 'omit' Named int [1:4] 1299 1336 1604 1640
+    ##   ..- attr(*, "names")= chr [1:4] "1419" "1457" "1752" "1790"
+
+    ## [1] 1859   15
+
+Dropout data summary:
+
+    ## 'data.frame':    1579 obs. of  12 variables:
+    ##  $ district           : num  9 18 27 63 81 99 126 135 153 171 ...
+    ##  $ district_name      : chr  "AGWSR" "Adair-Casey" "Adel DeSoto Minburn" "Akron Westfield" ...
+    ##  $ overall_dropout    : num  2 0 3 1 7 4 2 9 4 6 ...
+    ##  $ overall_enrollments: num  230 126 749 246 545 286 643 560 255 219 ...
+    ##  $ overall_rate       : num  0.87 0 0.4 0.41 1.28 1.4 0.31 1.61 1.57 2.74 ...
+    ##  $ f_dropout          : num  0 0 1 1 2 1 1 2 1 2 ...
+    ##  $ f_enrollments      : num  112 61 366 108 274 131 321 292 112 104 ...
+    ##  $ f_rate             : num  0 0 0.27 0.93 0.73 0.76 0.31 0.68 0.89 1.92 ...
+    ##  $ m_dropout          : num  2 0 2 0 5 3 1 7 3 4 ...
+    ##  $ m_enrollments      : num  118 65 383 138 271 155 322 268 143 115 ...
+    ##  $ m_rate             : num  1.69 0 0.52 0 1.85 1.94 0.31 2.61 2.1 3.48 ...
+    ##  $ year               : num  2016 2016 2016 2016 2016 ...
+
+    ## [1] 1579   12
+
+# Results
 
 ## Results 1-results after analyzing graduation rate data
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
     ## # A tibble: 364 × 2
     ##    District.Name       avg.gr
@@ -113,9 +149,9 @@ headers!
     ## 10 Algona                93.0
     ## # … with 354 more rows
 
-![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!---->
-![](README_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->
-![](README_files/figure-gfm/unnamed-chunk-3-4.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-3.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-4.png)<!-- -->
 
 For graduation rate vs district: based on the output graph, it is too
 concentrated to tell if there is any relationship between district and
@@ -131,7 +167,8 @@ factors that affects graduation rate
 
 ## Results 2
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
+
 These two bar plot shows overall number of enrollments and dropout by
 year. We notice that the overall enrollments is increating by year, but
 overall dropout is decreasing from 2016 to 2019, and it suddenly
@@ -142,32 +179,37 @@ are close to 50 50, however, as for dropouts, male obviously account for
 a greater proportion. It means that male has higher dropout rate than
 female in IOWA.
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- --> The next plot
-shows total dropout rate by year, which is a changing form of the
-previous plot. It display a more obvious trend.
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- --> In order to
-view the rate of change by year, we made this plot.This is the accurate
-change of overall dropout rate by year. Same as what we see in the
-previous plot, the rate change are negative from 2016 to 2019, and a big
-increasing appear in 2020.
+The next plot shows total dropout rate by year, which is a changing form
+of the previous plot. It display a more obvious trend.
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- --> This plot
-shows ranked mean dropout rate by district colored by gender. The mean
-rate is calculated by accumulated overall rate divided by number of
-districts which is the numer of rows. we can see the distribution of
-dropout rate by district.
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- --> Comparing
-with next plot which shows dropout count by district, we can see that
-the distribution is pretty different.The gap between districts is
-larger. Most of the districts have very low dropouts, there are only a
-new extreme large value. One district even has about 3000 overall
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+In order to view the rate of change by year, we made this plot.This is
+the accurate change of overall dropout rate by year. Same as what we see
+in the previous plot, the rate change are negative from 2016 to 2019,
+and a big increasing appear in 2020.
+
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+This plot shows ranked mean dropout rate by district colored by gender.
+The mean rate is calculated by accumulated overall rate divided by
+number of districts which is the numer of rows. we can see the
+distribution of dropout rate by district.
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+Comparing with next plot which shows dropout count by district, we can
+see that the distribution is pretty different.The gap between districts
+is larger. Most of the districts have very low dropouts, there are only
+a new extreme large value. One district even has about 3000 overall
 dropout. It is very abnormal to have such an outlier, but it is hard to
 find out what caused the out lier based on the current data.
 
 ## Results 3-contribution to overall dropout based on number of dropout region
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-11-3.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-11-4.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-11-5.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-14-2.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-14-3.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-14-4.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-14-5.png)<!-- -->
+
 Next, we divided number of dropouts into different regions as listed
 below, and made pie plot by year. We can see that district with less
 than 10 dropouts each year actually takes more than 75 percent of the
@@ -194,7 +236,7 @@ is a large-scale phenomenon.
     ## #   ⁵​sum.Private.2.Year.College, ⁶​sum.Community.College, ⁷​sum.Other.Training,
     ## #   ⁸​sum.Employment, ⁹​sum.Homemaker
 
-![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-15-2.png)<!-- -->
 
     ## # A tibble: 99 × 2
     ##    County sum.diploma
@@ -211,7 +253,7 @@ is a large-scale phenomenon.
     ## 10 18             635
     ## # … with 89 more rows
 
-![](README_files/figure-gfm/unnamed-chunk-12-3.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-12-4.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-12-5.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-12-6.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-12-7.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-15-3.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-15-4.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-15-5.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-15-6.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-15-7.png)<!-- -->
 
 Summarize by graduation year: Most students will go to
 college(Private.4.Year.College, Public.4.Year.College,
@@ -233,11 +275,6 @@ year public college every year.
 
 # Conclusions
 
-Give a quick summary of your work. Here is the place to be a bit
-critical and discuss potential limitations. Add a sentence on what else
-you would have liked to include in your data exploration if you had more
-time or more members in your team.
-
 From our analysis, we find that graduation class do have a little effect
 on the graduation but not significant. For Ames, both total cohort and
 graduation class are not factors that affects graduation rate. The
@@ -253,9 +290,6 @@ rate with covid data
 
 ## Data source
 
-Where does the data come from, who owns the data? Where are all the
-scripts that you need to clean the data?
-
 The Iowa government website owns the data.
 
 <https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This>
@@ -268,7 +302,5 @@ We get these 3 datasets from Iowa government website and all the scripts
 can be found in ‘Quick Data Summary’ above.
 
 ## References
-
-List all resources you used.
 
 <https://www.earnest.com/blog/graduation-and-retention-rates/>

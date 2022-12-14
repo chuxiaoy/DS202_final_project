@@ -74,13 +74,6 @@ We have three different data sets. The first one is about graduation rate. It is
 
 # Intro/Background/Motivation
 
-What is the topic of your project, why is it relevant?
-
-At the end of the Intro, write a sentence describing what each of the (result) sections is about, e.g. in section [Results 1] we show the relationship between XXX and YYY,  section [Results 2] also considers the effect of variable ZZZ. ...
-Finally we conclude with a quick summary of our findings and potential follow-up work in section [Conclusions].
-
-Somewhere at the beginning of your project, include a code chunk that includes all of the R packages you are using throughout. In this document, the setup code chunk is called `setup` (see line 8) Also make sure to set defaults for the code chunks - like should they be visible? (probably not: echo=FALSE). Do you want to automatically include warnings? (probably yes, for creating the Rmd, to make sure that all warnings are accounted for)
-
 Our project is about researching the graduation rates related to different graduation years, different district, and different genders. The graduation rate not only gives people insight into how many students are finishing their degrees in a timely manner once they enroll, it is also a transparent metric that holds a school accountable and helps meassure the quality of the school.
 
 In section 'result 1-results after analyzing graduation rate data', we show the relationship between graduation rate and district and graduating class. Section2 'result 2', we show the trend of dropout rate and the relationship between dropout rate and gender. In section 'Results 3-results after analyzing graduation intention', we show the relationship between diploma count and county and graduation year, and a the trend of graduates intention includes a pie charts (for Ames) about proportion of graduates intention.
@@ -89,7 +82,7 @@ In section 'result 1-results after analyzing graduation rate data', we show the 
 
 ```{r, include=FALSE}
 #graduation rate data
-df=read.csv("4-Year_Graduation_Rates_in_Iowa_by_Cohort_and_Public_School_District.csv")
+df <- read.csv(file='data-raw/4-Year_Graduation_Rates_in_Iowa_by_Cohort_and_Public_School_District.csv')
 dim(df)
 variable.names(df)
 length(unique(df$District)) 
@@ -99,7 +92,7 @@ gr=na.omit(df)
 head(gr)
 dim(gr)
 #graduation intention data
-df3 <- read.csv("graduate_intention.csv")
+df3 <- read.csv(file='data-raw/graduate_intention.csv')
 df3[df3 == ""] <- NA
 df3[df3 == "N/A"] <- NA
 gi=na.omit(df3)
@@ -121,8 +114,8 @@ gi$Graduation.Year=as.character(gi$Graduation.Year)
 str(gi)
 gi=na.omit(gi)
 dim(gi)
-write.csv(gr, "graduation_rate.csv")
-write.csv(gi, "graudation_intension.csv")
+write.csv(gr, "data/graduation_rate.csv")
+write.csv(gi, "data/graudation_intension.csv")
 ```
 Graduation rate data summary:
 ```{r}
@@ -144,11 +137,11 @@ library(readxl)
 # dropout analysis
 # load and clean data
 # 1. read xlsx file
-d2020<-read_excel("DR712_2021_District.xlsx",skip=3)
-d2019<-read_excel("dr712bydistrict2020.xlsx",skip=3)
-d2018<-read_excel("dr712bydistrict2019.xlsx",skip=3)
-d2017<-read_excel("Dropout Rates by district.xlsx",skip=3)
-d2016<-read_excel("2016-2017 Grade 7-12 Dropout Rates by District and Subgroup updated 4-12-18.xlsx",skip=7)
+d2020<-read_excel("data-raw\\DR712_2021_District.xlsx",skip=3)
+d2019<-read_excel("data-raw\\dr712bydistrict2020.xlsx",skip=3)
+d2018<-read_excel("data-raw\\dr712bydistrict2019.xlsx",skip=3)
+d2017<-read_excel("data-raw\\Dropout Rates by district.xlsx",skip=3)
+d2016<-read_excel("data-raw\\2016-2017 Grade 7-12 Dropout Rates by District and Subgroup updated 4-12-18.xlsx",skip=7)
 
 # 2. remove useless columns
 d2016[45:45] <- list(NULL)
@@ -225,7 +218,7 @@ df2 <- (df %>% group_by(year) %>%
   select(year, dropout, enrollment)
 
 df2 <- df2[!duplicated(df2), ] %>% mutate(rate_percentage = (dropout/enrollment))
-write.csv(df, "dropout.csv")
+write.csv(df, "data/dropout.csv")
 ```
 Dropout data summary:
 ```{r}
@@ -233,8 +226,6 @@ str(df)
 dim(df)
 ```
 # Results
-
-Each line of exploration is supposed to be featured in one of the Results sections. Make sure to change to more interesting section headers!
 
 ## Results 1-results after analyzing graduation rate data
 
@@ -432,8 +423,6 @@ Pie charts: most graduates would like to go to college.4 year public college is 
 
 # Conclusions
 
-Give a quick summary of your work. Here is the place to be a bit critical and discuss potential limitations. Add a sentence on what else you would have liked to include in your data exploration if you had more time or more members in your team. 
-
 From our analysis, we find that graduation class do have a little effect on the graduation but not significant. 
 For Ames, both total cohort and graduation class are not factors that affects graduation rate. 
 The overall dropout are decreasing from 2016 to 2019, but suddenly increased in 2020, while the overall enrollments is increasing. We also notice that The district with number of dropouts below than 10 each year contributes more than 75% of total dropouts.However, we find some connection with the districts and dropouts but not able to seek a very sighnificant finding on this part.
@@ -444,8 +433,6 @@ If we had more time and more data we could make analysis of the dropout rate wit
 
 
 ## Data source {.unnumbered}
-
-Where does the data come from, who owns the data? Where are all the scripts that you need to clean the data?
 
 The Iowa government website owns the data.
 
@@ -458,7 +445,5 @@ https://educateiowa.gov/graduation-rates-and-dropout-rates
 We get these 3 datasets from Iowa government website and all the scripts can be found in 'Quick Data Summary' above.
 
 ## References {.unnumbered}
-
-List all resources you used.
 
 https://www.earnest.com/blog/graduation-and-retention-rates/
