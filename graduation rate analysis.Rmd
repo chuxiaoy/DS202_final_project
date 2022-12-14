@@ -71,6 +71,10 @@ gr %>%
   summarize(Graduation.Rate= mean(Graduation.Rate)) %>%
   mutate(District= reorder(District, -Graduation.Rate, mean)) %>%
   ggplot(aes(District, weight=Graduation.Rate)) + geom_bar()
+
+gr%>%
+  group_by(District.Name)%>%
+  summarize(avg.gr=mean(gr$Graduation.Rate))
 ```
 
 In the following graph, we would like to see if there is any relationship between the year of graduate (`Graduating.Class`) and graduation rate(`Graduation.Rate`). First of all, we need to  change the gradating.class into character variable to move on. We used group_by function first to divide the data set into according year and use ggplot to draw the relationship between graduation year and graduation rate in a boxplot to analysis. 
@@ -116,6 +120,8 @@ df3[df3 == "N/A"] <- NA
 gi=na.omit(df3)
 variable.names(gi)
 str(gi)
+gi$County=as.character(gi$County)
+gi$District=as.character(gi$District)
 gi$Diploma.Count=as.numeric(gi$Diploma.Count)
 gi$Private.4.Year.College=as.numeric(gi$Private.4.Year.College)
 gi$Public.4.Year.College=as.numeric(gi$Public.4.Year.College)
@@ -135,7 +141,7 @@ dim(gi)
 ### basic analysis
 Next, we would like to some basic analysis for this data. 
 
-According to the output, we can see that most students will go to college(private 4 year college, public 4 year college, private 2 year college and community college) after they graduate. Employment is another popular choice for students who graduate from high school.
+According to the output, we can see that most students will go to college(private 4 year college, public 4 year college, private 2 year college and community college) after they graduate. Employement is another popular choice for students who graduate from high school.
 ```{r}
 gi%>%group_by(Graduation.Year)%>%
   summarize(
@@ -151,7 +157,7 @@ gi%>%group_by(Graduation.Year)%>%
     sum.Unknown=sum(Unknown)
   )
 ```
-According to the graph graduation that showing year versus diploma count below, we can see that graduation is not a factor that affects diploma count.
+According to the graph graduation.year versus diploma count below, we can see that graduation is not a factor that affects diploma count.
 ```{r}
 ggplot(gi,aes(x=Graduation.Year, y=Diploma.Count))+geom_boxplot()
 ```
@@ -161,12 +167,39 @@ ames2=gi%>%filter(District.Name=="Ames")%>%group_by(Graduation.Year)
 #2012
 slices12=c(64, 150, 63, 3, 1, 12, 1, 2, 18)
 lbls12=c("Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.College", "Community.College", "Other.Training","Employment", "Homemaker",  "Military", "Unknown" )
-pie(slices12, labels = lbls12, main="Pie Chart of Countries")
+pie(slices12, labels = lbls12, main="Pie Chart of Graduates Intention")
 
 #2013
 slices13=c(49, 154, 76, 2, 7, 16, 1, 4, 0)
 lbls13=c("Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.College", "Community.College", "Other.Training","Employment", "Homemaker",  "Military", "Unknown" )
-pie(slices13, labels = lbls13, main="Pie Chart of Countries")
+pie(slices13, labels = lbls13, main="Pie Chart of Graduates Intention")
+
+#2014
+slices14=c(54,157,54,4,3,20,0,8,0)
+lbls14=c("Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.College", "Community.College", "Other.Training","Employment", "Homemaker",  "Military", "Unknown" )
+pie(slices14, labels = lbls14, main="Pie Chart of Graduates Intention")
+
+#2015
+slices15=c(36,159,48,1,5,29,2,0,1)
+lbls15=c("Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.College", "Community.College", "Other.Training","Employment", "Homemaker",  "Military", "Unknown" )
+pie(slices15, labels = lbls15, main="Pie Chart of Graduates Intention")
+
+#2017
+slices17=c(35,137,79,0,5,32,0,4,13)
+lbls17=c("Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.College", "Community.College", "Other.Training","Employment", "Homemaker",  "Military", "Unknown" )
+pie(slices17, labels = lbls17, main="Pie Chart of Graduates Intention")
 ```
 
-For future discovery.
+```{r}
+gi %>%
+  group_by(County) %>%
+  ggplot(aes(x=County,y=Diploma.Count, color=Graduation.Year))+geom_bar(stat="identity")
+
+gi %>%
+  group_by(County) %>%
+  summarize(
+    sum.diploma=sum(Diploma.Count)
+  )
+
+```
+
