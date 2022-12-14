@@ -120,3 +120,8 @@ Where does the data come from, who owns the data? Where are all the scripts that
 ## References {.unnumbered}
 
 List all resources you used.
+
+https://www.earnest.com/blog/graduation-and-retention-rates/
+https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This
+https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts
+https://educateiowa.gov/graduation-rates-and-dropout-rates
