@@ -79,6 +79,8 @@ Finally we conclude with a quick summary of our findings and potential follow-up
 
 Somewhere at the beginning of your project, include a code chunk that includes all of the R packages you are using throughout. In this document, the setup code chunk is called `setup` (see line 8) Also make sure to set defaults for the code chunks - like should they be visible? (probably not: echo=FALSE). Do you want to automatically include warnings? (probably yes, for creating the Rmd, to make sure that all warnings are accounted for)
 
+Our project is about researching the graduation rates related to different graduation years, different district, and different genders. The graduation rate not only gives people insight into how many students are finishing their degrees in a timely manner once they enroll, it is also a transparent metric that holds a school accountable and helps meassure the quality of the school.
+
 # Quick Data Summary
 
 What are the variables that you will be using in the main part of the report? What are their ranges? You could include a table with variable names, a short explanation, and (very broad) summary statistics.
