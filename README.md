@@ -31,7 +31,7 @@ to your needs. But think about the changes that you make!
 
 # Title of your project
 
-Authors: First Name Last Name, First Name Last Name, …
+Authors: Chuxiao Yu, Feifan Cao, Haoran Wang, Wenzheng Wang
 
 ## Abstract (TL;DR)
 
@@ -94,12 +94,6 @@ the homework: first sentence describes structure of the plot, second
 sentence describes main finding, third sentence describes
 outliers/follow-up.</small>
 </p>
-
-![This is the figure caption. Make sure to use the description we
-practised in the homework: first sentence describes structure of the
-plot, second sentence describes main finding, third sentence describes
-outliers/follow-up.](README_files/figure-gfm/scatterplot-1.png)
-
 <p>
 <small><strong><a name='fig:2nd scatterplot'>2nd
 scatterplot</a></strong>: This is the figure caption. Make sure to use
@@ -107,11 +101,6 @@ the description we practised in the homework: first sentence describes
 structure of the plot, second sentence describes main finding, third
 sentence describes outliers/follow-up.</small>
 </p>
-
-![This is the figure caption. Make sure to use the description we
-practised in the homework: first sentence describes structure of the
-plot, second sentence describes main finding, third sentence describes
-outliers/follow-up.](README_files/figure-gfm/2nd%20scatterplot-1.png)
 
 Additionally, you can also refer to different sections in your writeup
 by using anchors (links) to section headers. Here, we are referring to
