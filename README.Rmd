@@ -86,7 +86,7 @@ Our project is about researching the graduation rates related to different gradu
 
 # Quick Data Summary
 
-```{r}{r setup, include=FALSE}
+```{r, include=FALSE}
 #graduation rate data
 df=read.csv("4-Year_Graduation_Rates_in_Iowa_by_Cohort_and_Public_School_District.csv")
 dim(df)
@@ -199,10 +199,9 @@ df <- df %>% replace(is.na(.), 0)
 
 Each line of exploration is supposed to be featured in one of the Results sections. Make sure to change to more interesting section headers!
 
-<<<<<<< HEAD
 ## Results 1-results after analyzing graduation rate data
 
-```{r}{r setup, include=FALSE}
+```{r, include=FALSE}
 #graduation rate vs district
 gr %>% 
   group_by(District) %>% 
@@ -247,7 +246,7 @@ For Ames graduation rate: both total cohort and graduation class are not factors
 
 ## Results 3-results after analyzing graduation intention
 
-```{r}{r setup, include=FALSE}
+```{r, include=FALSE}
 #summarize by graduation year
 gi%>%group_by(Graduation.Year)%>%
   summarize(
