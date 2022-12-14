@@ -305,11 +305,16 @@ Give a quick summary of your work. Here is the place to be a bit critical and di
 
 Where does the data come from, who owns the data? Where are all the scripts that you need to clean the data?
 
+https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This
+
+https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts
+
+https://educateiowa.gov/graduation-rates-and-dropout-rates
+
+We get these 3 datasets from Iowa government website.
+
 ## References {.unnumbered}
 
 List all resources you used.
 
 https://www.earnest.com/blog/graduation-and-retention-rates/
-https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This
-https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts
-https://educateiowa.gov/graduation-rates-and-dropout-rates
