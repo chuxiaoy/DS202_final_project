@@ -337,7 +337,7 @@ https://educateiowa.gov/document-type/graduate-intentions-district-including-gra
 
 https://educateiowa.gov/graduation-rates-and-dropout-rates
 
-We get these 3 datasets from Iowa government website.
+We get these 3 datasets from Iowa government website and all the scripts can be found in 'Quick Data Summary' above.
 
 ## References {.unnumbered}
 
