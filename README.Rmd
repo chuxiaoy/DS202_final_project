@@ -121,8 +121,8 @@ gi$Graduation.Year=as.character(gi$Graduation.Year)
 str(gi)
 gi=na.omit(gi)
 dim(gi)
-write.csv(gr, "data\\graduation_rate.csv", row.names=FALSE)
-write.csv(gi, "data\\graudation_intension.csv", row.names=FALSE)
+write.csv(gr, "graduation_rate.csv")
+write.csv(gi, "graudation_intension.csv")
 ```
 Graduation rate data summary:
 ```{r}
@@ -225,7 +225,7 @@ df2 <- (df %>% group_by(year) %>%
   select(year, dropout, enrollment)
 
 df2 <- df2[!duplicated(df2), ] %>% mutate(rate_percentage = (dropout/enrollment))
-write.csv(df, "data\\dropout.csv", row.names=FALSE)
+write.csv(df, "dropout.csv")
 ```
 Dropout data summary:
 ```{r}
