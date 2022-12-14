@@ -317,9 +317,15 @@ Pie charts: most graduates would like to go to college.4 year public college is 
 
 Give a quick summary of your work. Here is the place to be a bit critical and discuss potential limitations. Add a sentence on what else you would have liked to include in your data exploration if you had more time or more members in your team. 
 
+If we had more time and more data we could make analysis of the dropout rate with covid data
+
+
+
 ## Data source {.unnumbered}
 
 Where does the data come from, who owns the data? Where are all the scripts that you need to clean the data?
+
+The Iowa government website owns the data.
 
 https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This
 
