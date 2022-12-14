@@ -122,6 +122,78 @@ gi=na.omit(gi)
 dim(gi)
 ```
 
+```{r, include=FALSE}
+library(tidyverse)
+library(readxl)
+
+# dropout analysis
+# load and clean data
+# 1. read xlsx file
+d2020<-read_excel("DR712_2021_District.xlsx",skip=3)
+d2019<-read_excel("dr712bydistrict2020.xlsx",skip=3)
+d2018<-read_excel("dr712bydistrict2019.xlsx",skip=3)
+d2017<-read_excel("Dropout Rates by district.xlsx",skip=3)
+d2016<-read_excel("2016-2017 Grade 7-12 Dropout Rates by District and Subgroup updated 4-12-18.xlsx",skip=7)
+
+# 2. remove useless columns
+d2016[45:45] <- list(NULL)
+d2016[9:38] <- list(NULL)
+d2017[9:50] <- list(NULL)
+d2018[9:38] <- list(NULL)
+d2019[9:38] <- list(NULL)
+d2020[9:38] <- list(NULL)
+d2016[1:3] <- list(NULL)
+d2017[1:3] <- list(NULL)
+d2018[1:3] <- list(NULL)
+d2019[1:3] <- list(NULL)
+d2020[1:3] <- list(NULL)
+
+# 3. remove useless rows
+d2016 <- d2016[-(334:335),]
+d2017 <- d2017[-319,]
+d2018 <- d2018[-316,]
+d2019 <- d2019[-(315:316),]
+d2020 <- d2020[-(314:315),]
+
+# change column name
+colnames(d2016)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+colnames(d2017)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+colnames(d2018)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+colnames(d2019)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+colnames(d2020)<-c("district","district_name","overall_dropout","overall_enrollments","overall_rate","f_dropout","f_enrollments","f_rate","m_dropout","m_enrollments","m_rate")
+
+# 4. add year to each dataset
+d2016 <- d2016 %>% mutate(year=2016)
+d2017 <- d2017 %>% mutate(year=2017)
+d2018 <- d2018 %>% mutate(year=2018)
+d2019 <- d2019 %>% mutate(year=2019)
+d2020 <- d2020 %>% mutate(year=2020)
+
+# 5. rbind datasets 
+df <- rbind(d2016,d2017)
+df <- rbind(df,d2018)
+df <- rbind(df,d2019)
+df <- rbind(df,d2020)
+
+# 6. drop rows with **** in overall rate
+df <-df[!(df$overall_rate=="****"),]
+
+# 7. convert variables type
+df <- transform(df, district= as.numeric(district),
+                overall_dropout=as.numeric(overall_dropout),
+                overall_enrollments= as.numeric(overall_enrollments),
+                overall_rate= as.numeric(overall_rate),
+                f_dropout= as.numeric(f_dropout),
+                f_enrollments= as.numeric(f_enrollments),
+                f_rate= as.numeric(f_rate),
+                m_dropout= as.numeric(m_dropout),
+                m_enrollments= as.numeric(m_enrollments),
+                m_rate= as.numeric(m_rate))
+
+# 8. replace NA with 0
+df <- df %>% replace(is.na(.), 0)
+
+```
 
 # Results
 
@@ -252,3 +324,8 @@ Where does the data come from, who owns the data? Where are all the scripts that
 ## References {.unnumbered}
 
 List all resources you used.
+
+https://www.earnest.com/blog/graduation-and-retention-rates/
+https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This
+https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts
+https://educateiowa.gov/graduation-rates-and-dropout-rates
