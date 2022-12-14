@@ -17,8 +17,14 @@ d2019<-read_excel("dr712bydistrict2020.xlsx",skip=3)
 d2018<-read_excel("dr712bydistrict2019.xlsx",skip=3)
 d2017<-read_excel("Dropout Rates by district.xlsx",skip=3)
 d2016<-read_excel("2016-2017 Grade 7-12 Dropout Rates by District and Subgroup updated 4-12-18.xlsx",skip=7)
+```
 
-
+```{r}
+dim(d2016)
+dim(d2017)
+dim(d2018)
+dim(d2019)
+dim(d2020)
 ```
 Data cleaning
 ```{r}
@@ -130,6 +136,12 @@ library(ggplot2)
 df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=dropout, fill=gender)) + geom_bar(stat = "identity")
 
 ```
+```{r}
+library(ggplot2)
+# 1. overall enrollments by year
+df_gender %>% group_by(year) %>% ggplot(aes(x=year, y=enrollments, fill=gender)) + geom_bar(stat = "identity")
+
+```
 
 ```{r}
 # 2. overall dropout percentage changed by year 
@@ -160,7 +172,7 @@ df3 %>% ggplot(aes(x=year, y=rate_change)) + geom_bar(stat = "identity") + geom_
 # 4.  overall dropout rate by district shape
 df_gender %>% group_by(district) %>% 
   ggplot(aes(x=reorder(district, rate) , 
-             y=rate/5/nrow(df), fill=gender)) + 
+             y=rate/nrow(df), fill=gender)) + 
   geom_bar(stat = "identity")
 ```
 
