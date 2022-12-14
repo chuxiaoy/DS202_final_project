@@ -338,7 +338,7 @@ pie((df6%>%filter(year==2020))$count, labels = c("0~10", "10~20", "20~50", "50~1
 Next, we divided number of dropouts into different regions  as listed below, and made pie plot by year. We can see that district with less than 10 dropouts each year actually takes more than 75 percent of the total dropout. But in 2020, the percentage suddenly decreased. and number of dropout between 10 and 20 obviously increased, and number of dropout larger than 20 also increased a little bit. this means instead of only several districts, the increase in number of dopout in 2020 is is a large-scale phenomenon.
 
 
-## Results 3-results after analyzing graduation intention
+## Results 4-results after analyzing graduation intention
 
 ```{r}
 #summarize by graduation year
