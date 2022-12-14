@@ -83,6 +83,8 @@ Somewhere at the beginning of your project, include a code chunk that includes a
 
 Our project is about researching the graduation rates related to different graduation years, different district, and different genders. The graduation rate not only gives people insight into how many students are finishing their degrees in a timely manner once they enroll, it is also a transparent metric that holds a school accountable and helps meassure the quality of the school.
 
+In section 'result 1-results after analyzing graduation rate data', we show the relationship between graduation rate and district and graduating class. Section2 'result 2', we show the trend of dropout rate and the relationship between dropout rate and gender. In section 'Results 3-results after analyzing graduation intention', we show the relationship between diploma count and county and graduation year, and a the trend of graduates intention includes a pie charts (for Ames) about proportion of graduates intention.
+
 # Quick Data Summary
 
 ```{r, include=FALSE}
