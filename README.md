@@ -113,47 +113,8 @@ headers!
     ## 10 Algona                93.0
     ## # … with 354 more rows
 
-![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->
-
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
-    ## found in Windows font database
-
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
-    ## found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family not found in Windows font database
-
+![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!---->
+![](README_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->
 ![](README_files/figure-gfm/unnamed-chunk-3-4.png)<!-- -->
 
 For graduation rate vs district: based on the output graph, it is too
