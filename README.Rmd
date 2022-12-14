@@ -123,6 +123,7 @@ dim(gi)
 ```
 
 ```{r, include=FALSE}
+#dropout data
 library(tidyverse)
 library(readxl)
 
