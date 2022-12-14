@@ -61,7 +61,7 @@ The structure sketched out below is an idea of what your repository might look l
 
 
 
-# Title of your project {.unnumbered}
+# Iowa High School Graduation Rate {.unnumbered}
 
 Authors: Chuxiao Yu, Feifan Cao, Haoran Wang, Wenzheng Wang
 
