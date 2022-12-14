@@ -202,7 +202,7 @@ Each line of exploration is supposed to be featured in one of the Results sectio
 
 ## Results 1-results after analyzing graduation rate data
 
-```{r, include=FALSE}
+```{r}
 #graduation rate vs district
 gr %>% 
   group_by(District) %>% 
@@ -247,7 +247,7 @@ For Ames graduation rate: both total cohort and graduation class are not factors
 
 ## Results 3-results after analyzing graduation intention
 
-```{r, include=FALSE}
+```{r}
 #summarize by graduation year
 gi%>%group_by(Graduation.Year)%>%
   summarize(
