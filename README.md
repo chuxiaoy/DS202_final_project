@@ -48,11 +48,11 @@ someone to read the rest of the paper. Include one sentence each on
 What is the topic of your project, why is it relevant?
 
 At the end of the Intro, write a sentence describing what each of the
-(result) sections is about, e.g. in section [Results 1](#results-1) we
-show the relationship between XXX and YYY, section [Results
-2](#results-2) also considers the effect of variable ZZZ. … Finally we
-conclude with a quick summary of our findings and potential follow-up
-work in section [Conclusions](#conclusions).
+(result) sections is about, e.g. in section \[Results 1\] we show the
+relationship between XXX and YYY, section [Results 2](#results-2) also
+considers the effect of variable ZZZ. … Finally we conclude with a quick
+summary of our findings and potential follow-up work in section
+[Conclusions](#conclusions).
 
 Somewhere at the beginning of your project, include a code chunk that
 includes all of the R packages you are using throughout. In this
@@ -62,11 +62,14 @@ sure to set defaults for the code chunks - like should they be visible?
 warnings? (probably yes, for creating the Rmd, to make sure that all
 warnings are accounted for)
 
-# Quick Data Summary
+Our project is about researching the graduation rates related to
+different graduation years, different district, and different genders.
+The graduation rate not only gives people insight into how many students
+are finishing their degrees in a timely manner once they enroll, it is
+also a transparent metric that holds a school accountable and helps
+meassure the quality of the school.
 
-What are the variables that you will be using in the main part of the
-report? What are their ranges? You could include a table with variable
-names, a short explanation, and (very broad) summary statistics.
+# Quick Data Summary
 
 # Results
 
@@ -74,43 +77,42 @@ Each line of exploration is supposed to be featured in one of the
 Results sections. Make sure to change to more interesting section
 headers!
 
-## Results 1
+\<\<\<\<\<\<\< HEAD ## Results 1-results after analyzing graduation rate
+data
 
-In your write-up, make sure to refer to all of the figures you create.
-You can include a hyperlink to the [scatterplot](#fig:scatterplot) by
-using the name of the code chunk (make sure, to give each code chunk a
-different name). In your markdown document you can create this link
-either by calling the function `chunkref` with the name of the code
-chunk in quotes, i.e. `r chunkref("scatterplot")` or by using the
-markdown expression `[scatterplot](#fig:scatterplot)`. Similarly, we can
-refer to the [2nd scatterplot](#fig:2nd%20scatterplot). Note that the
-figure captions appear above the figures - this saves us from having to
-scroll up after following the link.
+For graduation rate vs district: based on the output graph, it is too
+concentrated to tell if there is any relationship between district and
+graduation rate.
 
-<p>
-<small><strong><a name='fig:scatterplot'>scatterplot</a></strong>: This
-is the figure caption. Make sure to use the description we practised in
-the homework: first sentence describes structure of the plot, second
-sentence describes main finding, third sentence describes
-outliers/follow-up.</small>
-</p>
-<p>
-<small><strong><a name='fig:2nd scatterplot'>2nd
-scatterplot</a></strong>: This is the figure caption. Make sure to use
-the description we practised in the homework: first sentence describes
-structure of the plot, second sentence describes main finding, third
-sentence describes outliers/follow-up.</small>
-</p>
+For graduation rate vs graduating class: Graduation class do have a
+little effect on the graduation but not significant. The median
+graduation and 75% quantile is not affecting by graduation year but the
+25% quantile has a increasing trend from graduation class 2011-2016.
 
-Additionally, you can also refer to different sections in your writeup
-by using anchors (links) to section headers. Here, we are referring to
-subsection [Results 3](#results-3). The code for that is `[Results 3]`.
+For Ames graduation rate: both total cohort and graduation class are not
+factors that affects graduation rate
 
 ## Results 2
 
-## Results 3
+## Results 3-results after analyzing graduation intention
 
-…
+Summarize by graduation year: Most students will go to
+college(Private.4.Year.College, Public.4.Year.College,
+Private.2.Year.College, Community.College are considered college) after
+graduate. Employment is a popular choice for those who are not going to
+college.
+
+Graduation year vs diploma count: Graduation year is not a factor that
+affects diploma count
+
+County vs diploma count: County is a factor that affect diploma count.
+County 77 has the most diploma in year 2012-2018.This does not mean
+County 77 has the highest graduation rate because we don’t know how many
+`Total.Cohort` (as it called in the graduation data) in this county
+
+Pie charts: most graduates would like to go to college.4 year public
+college is the most popular choice, about half of graduates will go to 4
+year public college every year.
 
 # Conclusions
 
@@ -127,3 +129,8 @@ scripts that you need to clean the data?
 ## References
 
 List all resources you used.
+
+<https://www.earnest.com/blog/graduation-and-retention-rates/>
+<https://data.iowa.gov/Primary-Secondary-Ed/4-Year-Graduation-Rates-in-Iowa-by-Cohort-and-Publ/tqti-3w6t.This>
+<https://educateiowa.gov/document-type/graduate-intentions-district-including-graduate-counts>
+<https://educateiowa.gov/graduation-rates-and-dropout-rates>

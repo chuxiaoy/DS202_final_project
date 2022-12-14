@@ -86,7 +86,7 @@ Our project is about researching the graduation rates related to different gradu
 
 # Quick Data Summary
 
-```{r}
+```{r, include=FALSE}
 #graduation rate data
 df=read.csv("4-Year_Graduation_Rates_in_Iowa_by_Cohort_and_Public_School_District.csv")
 dim(df)
@@ -123,6 +123,7 @@ dim(gi)
 ```
 
 ```{r, include=FALSE}
+#dropout data
 library(tidyverse)
 library(readxl)
 
@@ -199,7 +200,6 @@ df <- df %>% replace(is.na(.), 0)
 
 Each line of exploration is supposed to be featured in one of the Results sections. Make sure to change to more interesting section headers!
 
-<<<<<<< HEAD
 ## Results 1-results after analyzing graduation rate data
 
 ```{r}
@@ -235,6 +235,12 @@ ggplot(ames, aes(x=Graduating.Class)) +
 
 ```
 
+
+For graduation rate vs district: based on the output graph, it is too concentrated to tell if there is any relationship between district and graduation rate.
+
+For graduation rate vs graduating class: Graduation class do have a little effect on the graduation but not significant. The median graduation and 75% quantile is not affecting by graduation year but the 25% quantile has a increasing trend from graduation class 2011-2016.
+
+For Ames graduation rate: both total cohort and graduation class are not factors that affects graduation rate
 
 
 ## Results 2
@@ -295,6 +301,16 @@ lbls17=c("Private.4.Year.College", "Public.4.Year.College", "Private.2.Year.Coll
 pie(slices17, labels = lbls17, main="Pie Chart of Graduates Intention")
 
 ```
+
+
+Summarize by graduation year: Most students will go to college(Private.4.Year.College, Public.4.Year.College, Private.2.Year.College, Community.College are considered college) after graduate. 
+Employment is a popular choice for those who are not going to college.
+
+Graduation year vs diploma count: Graduation year is not a factor that affects diploma count
+
+County vs diploma count: County is a factor that affect diploma count. County 77 has the most diploma in year 2012-2018.This does not mean County 77 has the highest graduation rate because we don’t know how many `Total.Cohort` (as it called in the graduation data) in this county
+
+Pie charts: most graduates would like to go to college.4 year public college is the most popular choice, about half of graduates will go to 4 year public college every year. 
 
 
 # Conclusions
