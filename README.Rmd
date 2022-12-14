@@ -307,6 +307,37 @@ df_gender %>% group_by(district) %>%
   geom_bar(stat = "identity")
 ```
 Comparing with next plot which shows dropout count by district, we can see that the distribution is pretty different.The gap between districts is larger. Most of the districts have very low dropouts, there are only a new extreme large value. One district even has about 3000 overall dropout. It is very abnormal to have such an outlier, but it is hard to find out what caused the out lier based on the current data.
+
+## Results 3-contribution to overall dropout based on number of dropout region
+```{r, include=FALSE}
+count_values <- function(df, lower, upper, year) {
+  sum(df$overall_dropout >= lower & df$overall_dropout <= upper & df$year == year)
+}
+
+df6 <- data.frame()
+for (i in 2016:2020){
+  df6 <- rbind(df6, c(i, count_values(df,0,10, i)))
+  df6 <- rbind(df6, c(i,count_values(df,10,20, i)))
+  df6 <- rbind(df6, c(i,count_values(df,20,50, i)))
+  df6 <- rbind(df6, c(i,count_values(df,50,100, i)))
+  df6 <- rbind(df6, c(i,count_values(df,100,200, i)))
+  df6 <- rbind(df6, c(i,count_values(df,200,500, i)))
+  df6 <- rbind(df6, c(i,count_values(df,500,10000, i)))
+}
+colnames(df6) <- c("year", "count")
+c("year", "0~10","10~20","20~50","50~100","100~200","200~500","500+")
+```
+```{r}
+# 6. number of district of different number of overall dropout students
+pie((df6%>%filter(year==2016))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2016)")
+pie((df6%>%filter(year==2017))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2017)")
+pie((df6%>%filter(year==2018))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2018)")
+pie((df6%>%filter(year==2019))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2019)")
+pie((df6%>%filter(year==2020))$count, labels = c("0~10", "10~20", "20~50", "50~100", "100~200", "200~500", "500+"), main="number of dropout(2020)")
+```
+Next, we divided number of dropouts into different regions  as listed below, and made pie plot by year. We can see that district with less than 10 dropouts each year actually takes more than 75 percent of the total dropout. But in 2020, the percentage suddenly decreased. and number of dropout between 10 and 20 obviously increased, and number of dropout larger than 20 also increased a little bit. this means instead of only several districts, the increase in number of dopout in 2020 is is a large-scale phenomenon.
+
+
 ## Results 3-results after analyzing graduation intention
 
 ```{r}
